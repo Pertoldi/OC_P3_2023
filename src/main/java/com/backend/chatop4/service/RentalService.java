@@ -38,6 +38,6 @@ public class RentalService {
   }
 
   Rental getOne(Long id) { 
-    return rentalRepository.findById(id).orElseThrow(() => new RuntimeException("Rental not found !"));
+    return rentalRepository.findById(id).orElseThrow(() -> new RuntimeException("Rental not found !"));
   }
 }
