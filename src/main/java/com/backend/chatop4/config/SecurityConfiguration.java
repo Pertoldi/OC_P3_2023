@@ -20,11 +20,12 @@ public class SecurityConfiguration {
   private final AuthenticationProvider authenticationProvider;
 
   private static final String[] ROUTES_WHITE_LIST = {
-      "/auth/**"
+      "/api/auth/register"
   };
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { // Configure sécurity of all our
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { // Configure sécurity of all
+                                                                                       // our
                                                                                        // application
 
     http
@@ -35,7 +36,8 @@ public class SecurityConfiguration {
             .anyRequest() // any other request should be autenticated
             .authenticated())
         .sessionManagement(management -> management
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // that mean the session state sould not be store
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // that mean the session state sould
+                                                                     // not be store
                                                                      // (each request shoud be autenticated)
         .authenticationProvider(authenticationProvider)
         .addFilterBefore(jwtAuthenticationFilter,

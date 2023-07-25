@@ -42,6 +42,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     jwt = authHeader.substring(7);
+    final boolean isTokenAJwt = jwt.split(".").length == 3;
+    if (!isTokenAJwt) {
+      filterChain.doFilter(request, response);
+      return;
+    }
 
     userEmail = jwtService.extractUserEmail(jwt);
 

@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims; // Claims are pieces of information asserted about a subject
 //For example, an ID token (which is always a JWT ) can contain a claim called name that asserts that the name of the user authenticating is "John Doe".
@@ -16,6 +17,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+@Service
 public class JwtService {
 
   private static final String SECRET_KEY = "cmNIYXYyR2pFVGtXZmlXMlBuSDdOMGxsZXNVWlZxeEhwU24raDV6Qkg1VVNPdUJrTlc4ejRXNHo3QkZKZEZFSAo=";
