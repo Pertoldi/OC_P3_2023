@@ -17,7 +17,7 @@ public class RentalService {
   @Autowired
   private RentalRepository rentalRepository;
 
-  Rental create(Rental rental) {
+  public Rental create(Rental rental) {
     // TODO enregistrer l'image et remplacer l'url avant de l'enregistrer
     return (Rental) rentalRepository.save(rental);
   }
@@ -37,7 +37,7 @@ public class RentalService {
     return r;
   }
 
-  Rental getOne(Long id) {
+  public Rental getOne(Long id) {
     return rentalRepository.findById(id).orElseThrow(() -> new RuntimeException("Rental not found !"));
   }
 }
