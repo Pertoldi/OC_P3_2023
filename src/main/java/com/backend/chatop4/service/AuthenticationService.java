@@ -5,12 +5,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.backend.chatop4.controller.AuthenticationResponse;
-import com.backend.chatop4.controller.LoginRequest;
-import com.backend.chatop4.controller.RegisterRequest;
 import com.backend.chatop4.model.Role;
 import com.backend.chatop4.model.User;
 import com.backend.chatop4.repository.UserRepository;
+import com.backend.chatop4.request.LoginRequest;
+import com.backend.chatop4.request.RegisterRequest;
+import com.backend.chatop4.response.AuthenticationResponse;
 
 import lombok.RequiredArgsConstructor;
 
