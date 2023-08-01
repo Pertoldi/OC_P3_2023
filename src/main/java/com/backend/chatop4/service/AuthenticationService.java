@@ -5,7 +5,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.backend.chatop4.model.Role;
 import com.backend.chatop4.model.User;
 import com.backend.chatop4.repository.UserRepository;
 import com.backend.chatop4.request.LoginRequest;
@@ -24,12 +23,13 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
 
   public AuthenticationResponse register(RegisterRequest request) {
+    // TODO rechercher à partir du mail. Si il existe pas de création renvoie erreur
+    // email déjà utilisée.
     var user = User
         .builder()
         .name(request.getName())
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
-        .role(Role.USER)
         .build();
 
     userRepository.save(user);
@@ -45,6 +45,7 @@ public class AuthenticationService {
   public AuthenticationResponse login(LoginRequest request) {
     authenticationManager
         .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+    // TODO pb ici
     // if we pass here that mean the authentification work
     var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
 
