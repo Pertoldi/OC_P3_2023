@@ -1,5 +1,6 @@
 package com.backend.chatop4.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@Table
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity()
@@ -45,12 +46,9 @@ public class User implements UserDetails { // UserDetails to make User a spring 
   @CreationTimestamp
   private Date updated_at;
 
-  @Enumerated(EnumType.STRING)
-  private Role role;
-
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of(new SimpleGrantedAuthority(role.name()));
+    return new ArrayList<>();
   }
 
   @Override

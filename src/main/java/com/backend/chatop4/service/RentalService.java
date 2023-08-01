@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.backend.chatop4.model.Rental;
 import com.backend.chatop4.repository.RentalRepository;
+import com.backend.chatop4.request.RentalRequest;
 
 import lombok.Data;
 
@@ -17,8 +18,9 @@ public class RentalService {
   @Autowired
   private RentalRepository rentalRepository;
 
-  Rental create(Rental rental) {
+  public Rental create(Rental rental) {
     // TODO enregistrer l'image et remplacer l'url avant de l'enregistrer
+    // TODO ajouter les dates created_at updated_at et l'owner_id
     return (Rental) rentalRepository.save(rental);
   }
 
@@ -26,7 +28,7 @@ public class RentalService {
     return rentalRepository.findAll();
   }
 
-  Rental update(Long id, Rental rental) {
+  Rental update(Integer id, Rental rental) {
     // TODO IDEM gestion de l'image si celle-ci à été modifié
     Rental r = rentalRepository.getReferenceById(id);
     r.setPrice(rental.getPrice());
@@ -37,7 +39,7 @@ public class RentalService {
     return r;
   }
 
-  Rental getOne(Long id) {
+  public Rental getOne(Integer id) {
     return rentalRepository.findById(id).orElseThrow(() -> new RuntimeException("Rental not found !"));
   }
 }

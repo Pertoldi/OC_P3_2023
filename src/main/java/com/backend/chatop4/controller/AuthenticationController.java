@@ -1,4 +1,4 @@
-package controller;
+package com.backend.chatop4.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.chatop4.request.LoginRequest;
+import com.backend.chatop4.request.RegisterRequest;
+import com.backend.chatop4.response.AuthenticationResponse;
 import com.backend.chatop4.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,13 +20,14 @@ public class AuthenticationController {
 
   public final AuthenticationService authenticationService;
 
-  @PostMapping("/register")
+  @PostMapping("register")
   public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
     return ResponseEntity.ok(authenticationService.register(request));
   }
 
-  @PostMapping("/login")
+  @PostMapping("login")
   public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request) {
+    System.out.println("request LOGIN: " + request);
     return ResponseEntity.ok(authenticationService.login(request));
   }
 

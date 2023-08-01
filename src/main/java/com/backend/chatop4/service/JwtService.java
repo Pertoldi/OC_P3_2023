@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,8 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 
-  private static final String SECRET_KEY = "cmNIYXYyR2pFVGtXZmlXMlBuSDdOMGxsZXNVWlZxeEhwU24raDV6Qkg1VVNPdUJrTlc4ejRXNHo3QkZKZEZFSAo=";
-  // TODO mettre en properties et en variable d'environement
+  @Value("${jwtSecretKey}")
+  private String SECRET_KEY;
 
   public String extractUserEmail(String jwt) { // for spring UserDetails it is more common to see extractUsername cf:
                                                // isTokenValid

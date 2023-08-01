@@ -1,4 +1,4 @@
-package controller;
+package com.backend.chatop4.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

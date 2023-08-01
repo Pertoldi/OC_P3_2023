@@ -12,21 +12,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table
+@Table(name = "rentals")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Rental {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Integer id;
 
   private String name;
   private Integer price;
   private Integer surface;
   private String picture;
   private String description;
-  private Long owner_id;
+  private Integer owner_id;
   private Date created_at;
   private Date updated_at;
 }
