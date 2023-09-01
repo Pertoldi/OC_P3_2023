@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Properties;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -68,12 +67,16 @@ public class JwtService {
         .parserBuilder()
         .setSigningKey(getSignInKey())
         .build()
-        .parseClaimsJwt(jwt)
+        .parseClaimsJws(jwt)
         .getBody();
   }
 
   private Key getSignInKey() {
     byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
     return Keys.hmacShaKeyFor(keyBytes);
+  }
+
+  public String getUsernameFromToken(String token) {
+    return extractClaim(token, Claims::getSubject);
   }
 }

@@ -22,8 +22,8 @@ public class Rental {
   private Integer id;
 
   private String name;
-  private Integer price;
-  private Integer surface;
+  private Double price;
+  private Double surface;
   private String picture;
   private String description;
   private Integer owner_id;
