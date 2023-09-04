@@ -9,6 +9,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.backend.chatop4.dto.RentalUpdateDto;
 import com.backend.chatop4.model.Rental;
 import com.backend.chatop4.repository.RentalRepository;
 
@@ -26,15 +27,21 @@ public class RentalService {
     return rentalRepository.findAll();
   }
 
-  Rental update(Integer id, Rental rental) {
-    // TODO IDEM gestion de l'image si celle-ci à été modifié
+  public Boolean update(Integer id, RentalUpdateDto rental, Integer userId) {
+    System.out.println("id: " + id);
     Rental r = rentalRepository.getReferenceById(id);
-    r.setPrice(rental.getPrice());
-    r.setPicture(rental.getPicture());
-    r.setOwner_id(rental.getOwner_id());
-    r.setCreated_at(rental.getCreated_at());
-    r.setUpdated_at(rental.getUpdated_at());
-    return r;
+    System.out.println("r: " + r);
+    System.out.println("r.getOwner_id(): " + r.getOwner_id());
+    if (r.getOwner_id().equals(userId)) {
+      r.setName(rental.getName());
+      r.setSurface(rental.getSurface());
+      r.setPrice(rental.getPrice());
+      r.setDescription(rental.getDescription());
+      r.setUpdated_at(rental.getUpdated_at());
+      rentalRepository.save(r);
+      return true;
+    }
+    return false;
   }
 
   public Rental getOne(Integer id) {
@@ -52,17 +59,16 @@ public class RentalService {
       if (imageFile.getSize() > 10485760) { // 10 MB to bytes
         throw new IOException("File size exceeds the limit.");
       }
-      String uploadPath = "C:\\Users\\Pertoldi\\Desktop\\OC2023\\projet_3.1\\";
+      String uploadPath = "C:\\Users\\Pertoldi\\Desktop\\OC2023\\projet_3.1\\OC_P3_2023\\pictures\\";
       String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
       String filePath = uploadPath + fileName;
-      System.out.println("filePath: " + filePath);
       File pictureDir = ResourceUtils.getFile(uploadPath);
       if (!pictureDir.exists()) {
         pictureDir.mkdirs();
       }
       imageFile.transferTo(new File(filePath));
       String addressAndPort = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-      String imageUrl = addressAndPort + "/picture/" + fileName;
+      String imageUrl = addressAndPort + "/pictures/" + fileName;
       return imageUrl;
     } catch (IOException e) {
       e.printStackTrace();
