@@ -1,6 +1,7 @@
 package com.backend.chatop4.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -29,11 +30,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RentalController {
 
-  public final RentalService rentalService;
+  private final RentalService rentalService;
   private final UserService userService;
 
   @GetMapping
-  public ResponseEntity<Object> getAll() {
+  public ResponseEntity<List<Rental>> getAll() {
     return ResponseEntity.ok(rentalService.getAll());
   }
 

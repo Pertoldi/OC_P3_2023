@@ -1,6 +1,6 @@
 package com.backend.chatop4.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +14,5 @@ public class RentalUpdateDto {
   private Double surface;
   private Double price;
   private String description;
-  private Date updated_at;
+  private LocalDateTime updated_at;
 }

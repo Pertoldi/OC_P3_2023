@@ -1,11 +1,13 @@
 package com.backend.chatop4.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,16 @@ public class Rental {
   private String picture;
   private String description;
   private Integer owner_id;
-  private Date created_at;
-  private Date updated_at;
+  private LocalDateTime created_at;
+  private LocalDateTime updated_at;
+
+  @PrePersist
+  public void prePersist() {
+    created_at = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  public void preUpdate() {
+    updated_at = LocalDateTime.now();
+  }
 }
