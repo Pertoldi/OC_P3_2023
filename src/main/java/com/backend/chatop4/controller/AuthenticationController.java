@@ -1,14 +1,11 @@
 package com.backend.chatop4.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.chatop4.model.User;
 import com.backend.chatop4.request.LoginRequest;
 import com.backend.chatop4.request.RegisterRequest;
 import com.backend.chatop4.response.AuthenticationResponse;
@@ -16,7 +13,6 @@ import com.backend.chatop4.service.AuthenticationService;
 import com.backend.chatop4.service.JwtService;
 import com.backend.chatop4.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
