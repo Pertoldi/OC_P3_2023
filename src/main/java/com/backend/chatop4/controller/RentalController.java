@@ -34,7 +34,7 @@ public class RentalController {
   private final UserService userService;
 
   @GetMapping
-  public ResponseEntity<List<Rental>> getAll() {
+  public ResponseEntity<Map<String, List<Rental>>> getAll() {
     return ResponseEntity.ok(rentalService.getAll());
   }
 

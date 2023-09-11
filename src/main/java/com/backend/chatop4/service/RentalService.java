@@ -1,7 +1,9 @@
 package com.backend.chatop4.service;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +25,8 @@ public class RentalService {
   @Autowired
   private RentalRepository rentalRepository;
 
-  public List<Rental> getAll() {
-    return rentalRepository.findAll();
+  public Map<String, List<Rental>> getAll() {
+    return Collections.singletonMap("rentals", rentalRepository.findAll());
   }
 
   public Boolean update(Integer id, RentalUpdateDto rental, Integer userId) {
