@@ -22,12 +22,16 @@ import com.backend.chatop4.model.Rental;
 import com.backend.chatop4.service.RentalService;
 import com.backend.chatop4.service.UserService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/rentals")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "BearerAuth")
+@Tag(name = "Rentals")
 public class RentalController {
 
   private final RentalService rentalService;

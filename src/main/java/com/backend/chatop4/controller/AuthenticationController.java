@@ -15,11 +15,15 @@ import com.backend.chatop4.service.AuthenticationService;
 import com.backend.chatop4.service.JwtService;
 import com.backend.chatop4.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Authentication")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
@@ -37,6 +41,7 @@ public class AuthenticationController {
     return ResponseEntity.ok(authenticationService.login(request));
   }
 
+  @Operation(security = @SecurityRequirement(name = "BearerAuth"))
   @GetMapping("/me")
   public ResponseEntity<User> getUser(HttpServletRequest request) {
 
