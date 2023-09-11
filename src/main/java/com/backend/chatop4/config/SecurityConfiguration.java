@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                         "/swagger-resources/**",
                         "/swagger-ui.html",
                         "api-docs/**",
-                        "/images/**"
+                        "/pictures/**"
         };
 
         @Bean

@@ -30,10 +30,7 @@ public class RentalService {
   }
 
   public Boolean update(Integer id, RentalUpdateDto rental, Integer userId) {
-    System.out.println("id: " + id);
     Rental r = rentalRepository.getReferenceById(id);
-    System.out.println("r: " + r);
-    System.out.println("r.getOwner_id(): " + r.getOwner_id());
     if (r.getOwner_id().equals(userId)) {
       r.setName(rental.getName());
       r.setSurface(rental.getSurface());
