@@ -25,7 +25,7 @@ public class MessageController {
 
   private final MessageService messageService;
 
-  @PostMapping("/")
+  @PostMapping()
   public ResponseEntity<Map<String, String>> create(@RequestBody Message message) {
     Message messageSaved = messageService.create(message);
     if (messageSaved != null) {
