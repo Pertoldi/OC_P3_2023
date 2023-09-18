@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.chatop4.model.User;
+import com.backend.chatop4.dto.UserDto;
 import com.backend.chatop4.request.LoginRequest;
 import com.backend.chatop4.request.RegisterRequest;
 import com.backend.chatop4.response.AuthenticationResponse;
@@ -43,7 +43,7 @@ public class AuthenticationController {
 
   @Operation(security = @SecurityRequirement(name = "BearerAuth"))
   @GetMapping("/me")
-  public ResponseEntity<User> getUser(HttpServletRequest request) {
+  public ResponseEntity<UserDto> getUser(HttpServletRequest request) {
 
     final String authHeader = request.getHeader("Authorization");
 
