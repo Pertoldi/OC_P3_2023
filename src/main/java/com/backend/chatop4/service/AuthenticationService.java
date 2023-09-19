@@ -23,8 +23,6 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
 
   public AuthenticationResponse register(RegisterRequest request) {
-    // TODO rechercher à partir du mail. Si il existe pas de création renvoie erreur
-    // email déjà utilisée.
     var user = User
         .builder()
         .name(request.getName())

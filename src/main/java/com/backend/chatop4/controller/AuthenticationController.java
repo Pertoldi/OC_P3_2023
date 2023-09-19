@@ -31,17 +31,19 @@ public class AuthenticationController {
   private final JwtService jwtService;
   private final UserService userService;
 
+  @Operation(summary = "auth register")
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
     return ResponseEntity.ok(authenticationService.register(request));
   }
 
+  @Operation(summary = "auth login")
   @PostMapping("/login")
   public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request) {
     return ResponseEntity.ok(authenticationService.login(request));
   }
 
-  @Operation(security = @SecurityRequirement(name = "BearerAuth"))
+  @Operation(security = @SecurityRequirement(name = "BearerAuth"), summary = "Get current user's information")
   @GetMapping("/me")
   public ResponseEntity<User> getUser(HttpServletRequest request) {
 

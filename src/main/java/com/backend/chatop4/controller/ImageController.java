@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.chatop4.service.ImageService;
 
 import io.jsonwebtoken.io.IOException;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class ImageController {
 
   private final ImageService imageService;
 
+  @Operation(summary = "Get picture by name")
   @GetMapping("/{name}")
   public ResponseEntity<Object> getPictureByName(@PathVariable String name) throws IOException, java.io.IOException {
     return imageService.getPictureByName(name);
