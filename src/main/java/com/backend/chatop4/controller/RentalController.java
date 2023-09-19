@@ -22,6 +22,7 @@ import com.backend.chatop4.model.Rental;
 import com.backend.chatop4.service.RentalService;
 import com.backend.chatop4.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,16 +38,19 @@ public class RentalController {
   private final RentalService rentalService;
   private final UserService userService;
 
+  @Operation(summary = "Get all rentals")
   @GetMapping
   public ResponseEntity<Map<String, List<Rental>>> getAll() {
     return ResponseEntity.ok(rentalService.getAll());
   }
 
+  @Operation(summary = "Get One rental by it's id")
   @GetMapping("/{id}")
   public ResponseEntity<Rental> getOne(@PathVariable("id") Integer id) {
     return ResponseEntity.ok(rentalService.getOne(id));
   }
 
+  @Operation(summary = "Crée un rental")
   @PostMapping
   public ResponseEntity<Map<String, String>> create(
       HttpServletRequest request,
@@ -76,6 +80,7 @@ public class RentalController {
     return ResponseEntity.ok(Map.of("message", "Rental created !"));
   }
 
+  @Operation(summary = "Get One rental by it's id")
   @PutMapping("/{id}")
   public ResponseEntity<Map<String, String>> update(HttpServletRequest request,
       @PathVariable Integer id,

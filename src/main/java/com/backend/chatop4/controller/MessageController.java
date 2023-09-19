@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.chatop4.model.Message;
 import com.backend.chatop4.service.MessageService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class MessageController {
 
   private final MessageService messageService;
 
+  @Operation(summary = "Create a new message")
   @PostMapping()
   public ResponseEntity<Map<String, String>> create(@RequestBody Message message) {
     Message messageSaved = messageService.create(message);
