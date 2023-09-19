@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.backend.chatop4.dto.RentalDto;
 import com.backend.chatop4.dto.RentalUpdateDto;
 import com.backend.chatop4.model.Rental;
 import com.backend.chatop4.service.RentalService;
@@ -51,17 +53,11 @@ public class RentalController {
   }
 
   @Operation(summary = "Crée un rental")
-  @PostMapping
+  @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
   public ResponseEntity<Map<String, String>> create(
       HttpServletRequest request,
-      @RequestParam("name") String name,
-      @RequestParam("surface") Double surface,
-      @RequestParam("price") Double price,
-      @RequestParam("picture") MultipartFile picture,
-      @RequestParam("description") String description) throws IllegalStateException, IOException
-
-  {
-    String pictureUrl = rentalService.uploadPicture(picture);
+      @ModelAttribute("rentals") RentalDto rentalsDto) throws IllegalStateException, IOException {
+    String pictureUrl = rentalService.uploadPicture(rentalsDto.getPicture());
     if (pictureUrl == null) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
@@ -71,10 +67,10 @@ public class RentalController {
     Integer userId = userService.getUserIdFromToken(token);
 
     Rental rental = new Rental();
-    rental.setName(name);
-    rental.setSurface(surface);
-    rental.setPrice(price);
-    rental.setDescription(description);
+    rental.setName(rentalsDto.getName());
+    rental.setSurface(rentalsDto.getSurface());
+    rental.setPrice(rentalsDto.getPrice());
+    rental.setDescription(rentalsDto.getDescription());
     rental.setPicture(pictureUrl);
     rentalService.create(rental, userId);
     return ResponseEntity.ok(Map.of("message", "Rental created !"));
