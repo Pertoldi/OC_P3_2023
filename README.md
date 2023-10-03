@@ -68,6 +68,7 @@ jwtSecretKey=
 
 **6. Running the application locally:**  
 
+don't forgot to go to the branch production to see what is in production.
 - There are several ways to run a Spring Boot application on your local machine. One way is to execute the main method in the **Chatop4Application class** from your IDE.
 
 - Alternatively you can use the Spring Boot Maven plugin like so:
