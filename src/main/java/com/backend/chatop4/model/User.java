@@ -1,8 +1,8 @@
 package com.backend.chatop4.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,10 +37,10 @@ public class User implements UserDetails { // UserDetails to make User a spring 
   private String password;
 
   @CreationTimestamp
-  private Date created_at;
+  private LocalDateTime created_at;
 
   @CreationTimestamp
-  private Date updated_at;
+  private LocalDateTime updated_at;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

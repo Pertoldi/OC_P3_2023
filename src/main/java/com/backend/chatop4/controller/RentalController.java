@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.chatop4.dto.RentalDto;
 import com.backend.chatop4.dto.RentalUpdateDto;
@@ -76,7 +74,7 @@ public class RentalController {
     return ResponseEntity.ok(Map.of("message", "Rental created !"));
   }
 
-  @Operation(summary = "Get One rental by it's id")
+  @Operation(summary = "Update one rental by it's id")
   @PutMapping("/{id}")
   public ResponseEntity<Map<String, String>> update(HttpServletRequest request,
       @PathVariable Integer id,
